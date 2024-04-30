@@ -74,7 +74,7 @@ func (s *Server) msgDistributor(msg string, conn *websocket.Conn) {
 		time.Sleep(time.Second * 2)
 	}
 
-  dev := keysByValue(s.conns, conn)
+  dev := keyByValue(s.conns, conn)
 	switch dev {
 
 	case "engine":
@@ -151,7 +151,7 @@ func (s *Server) readLoop(conn *websocket.Conn) {
 		s.msgDistributor(string(msg), conn)
 	}
 }
-func keysByValue(m map[string]*websocket.Conn, value *websocket.Conn) string {
+func keyByValue(m map[string]*websocket.Conn, value *websocket.Conn) string {
     for k, v := range m {
         if value == v {
           return k
